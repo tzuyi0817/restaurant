@@ -62,10 +62,13 @@ app.post('/restaurants', (req, res) => {
   })
 })
 
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-//   const restaurant = restaurantList.results.filter(restaurant => { restaurant.id == req.params.restaurant_id)
-//   res.render('show', { restaurant: restaurant[0] })
-// })
+//顯示詳細內容
+app.get('/restaurants/:id', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+    return res.render('show', { restaurant: restaurant })
+  })
+})
 
 // app.get('/search', (req, res) => {
 //   const keyword = req.query.keyword
