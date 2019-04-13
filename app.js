@@ -109,13 +109,18 @@ app.post('/restaurants/:id/delete', (req, res) => {
     })
   })
 })
-// app.get('/search', (req, res) => {
-//   const keyword = req.query.keyword
-//   const restaurants = restaurantList.results.filter(restaurant => {
-//     return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-//   })
-//   res.render('index', { restaurants: restaurants, keyword: keyword })
-// })
+
+//搜尋
+app.get('/search', (req, res) => {
+  const keyword = req.query.keyword
+  Restaurant.find((err, restaurants) => {
+    if (err) return console.error(err)
+    const search = restaurants.filter(restaurant => {
+      return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+    })
+    res.render('index', { restaurants: search, keyword: keyword })
+  })
+})
 
 //start and listen Express server
 app.listen(port, () => {
