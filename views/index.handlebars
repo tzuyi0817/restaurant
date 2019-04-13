@@ -47,9 +47,11 @@
                 <div class="detail">
                   <a href="/restaurants/{{id}}">詳細資料</a>
                 </div>
-                <div class="delete">
-                  <button type="submit" class="btn btn-primary">刪除</button>
-                </div>
+                <form action="/restaurants/{{id}}/delete" method="POST">
+                  <div class="delete">
+                    <button type="submit" class="btn btn-primary">刪除</button>
+                  </div>
+                </form>
               </div>
 
             </div>

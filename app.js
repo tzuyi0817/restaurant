@@ -78,7 +78,6 @@ app.get('/restaurants/:id/edit', (req, res) => {
   })
 })
 
-
 //修改資料
 app.post('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
@@ -95,6 +94,18 @@ app.post('/restaurants/:id', (req, res) => {
     restaurant.save(err => {
       if (err) return console.error(err)
       return res.redirect(`/restaurants/${req.params.id}`)
+    })
+  })
+})
+
+//刪除資料
+app.post('/restaurants/:id/delete', (req, res) => {
+  Restaurant.findById(req.params.id, (err, restaurant) => {
+    if (err) return console.error(err)
+
+    restaurant.remove(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
     })
   })
 })
