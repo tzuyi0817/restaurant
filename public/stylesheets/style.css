@@ -99,3 +99,15 @@ header {
   }
   
 }
+
+.edit, .detail{
+  font-size: 18px;
+  margin: 1px;
+  padding: 2px;
+}
+
+.btn {
+  height: 35px;
+  padding: 2px;
+  font-size: 18px;
+}
