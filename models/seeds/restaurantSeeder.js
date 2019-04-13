@@ -1,16 +1,29 @@
-{
-  "results": [
+const mongoose = require('mongoose')
+const Restaurant = require('../restaurant')
+
+mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb error')
+})
+
+db.once('open', () => {
+  console.log('mongodb connected')
+
+  Restaurant.create(
     {
-      "id": 1,
-      "name": "Sababa 沙巴巴中東美食",
-      "name_en": "Sababa Pita Bar",
-      "category": "中東料理",
-      "image": "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg",
-      "location": "台北市羅斯福路三段 283 巷 17 號",
-      "phone": "02 2363 8009",
-      "google_map": "https://goo.gl/maps/BJdmLuVdDbw",
-      "rating": 4.1,
-      "description": "沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。"
+      id: 1,
+      name: 'Sababa 沙巴巴中東美食',
+      name_en: "Sababa Pita Bar",
+      category: "中東料理",
+      image: "https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5635/01.jpg",
+      location: "台北市羅斯福路三段 283 巷 17 號",
+      phone: "02 2363 8009",
+      google_map: "https://goo.gl/maps/BJdmLuVdDbw",
+      rating: 4.1,
+      description: "沙巴巴批塔是台灣第一家純手工批塔專賣店,只選用最新鮮的頂級原料,以及道地的中東家傳配方。"
     },
     {
       "id": 2,
@@ -96,5 +109,8 @@
       "rating": 4.7,
       "description": "我們希望帶給您的，不只是啤酒，有美食，還有一份對生活的熱情。 義大利語「Bravo」的原意─「喝采」、「讚揚」， 我想著如果有一個大家都能輕鬆品嚐美酒、享受美食的地方，那就真的是太棒了！ 因為這個念頭，加上一股對比利時啤酒的熱情， 於是「Bravo Beer布娜飛比利時啤酒餐廳」在2006年誕生了..."
     }
-  ]
-}
+  )
+
+  console.log('done')
+})
+
