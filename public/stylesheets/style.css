@@ -111,3 +111,12 @@ header {
   padding: 2px;
   font-size: 18px;
 }
+
+.create {
+  color: white;
+}
+
+.create:hover {
+  color: white;
+  text-decoration: none;
+}

@@ -34,7 +34,7 @@ app.use(express.static('public'))
 app.get('/', (req, res) => {
   Restaurant.find((err, restaurants) => {
     if (err) return console.error(err)
-    return res.render('index', { restaurants: restaurants })
+    return res.render('index', { restaurants })
   })
 })
 
@@ -45,16 +45,7 @@ app.get('/restaurants/new', (req, res) => {
 
 //新增一筆資料
 app.post('/restaurants', (req, res) => {
-  const restaurant = Restaurant({
-    name: req.body.name,
-    category: req.body.category,
-    image: req.body.image,
-    location: req.body.location,
-    phone: req.body.phone,
-    google_map: req.body.google_map,
-    rating: req.body.rating,
-    description: req.body.description,
-  })
+  const restaurant = Restaurant(req.body)
 
   restaurant.save(err => {
     if (err) return console.error(err)
@@ -66,7 +57,7 @@ app.post('/restaurants', (req, res) => {
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    return res.render('show', { restaurant: restaurant })
+    return res.render('show', { restaurant })
   })
 })
 
@@ -74,7 +65,7 @@ app.get('/restaurants/:id', (req, res) => {
 app.get('/restaurants/:id/edit', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    return res.render('edit', { restaurant: restaurant })
+    return res.render('edit', { restaurant })
   })
 })
 
@@ -82,14 +73,7 @@ app.get('/restaurants/:id/edit', (req, res) => {
 app.post('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    restaurant.name = req.body.name
-    restaurant.category = req.body.category
-    restaurant.image = req.body.image
-    restaurant.location = req.body.location
-    restaurant.phone = req.body.phone
-    restaurant.google_map = req.body.google_map
-    restaurant.rating = req.body.rating
-    restaurant.description = req.body.description
+    object.assign(restaurant, req.body)
 
     restaurant.save(err => {
       if (err) return console.error(err)
@@ -118,11 +102,11 @@ app.get('/search', (req, res) => {
     const search = restaurants.filter(restaurant => {
       return restaurant.name.toLowerCase().includes(keyword.toLowerCase())
     })
-    res.render('index', { restaurants: search, keyword: keyword })
+    res.render('index', { restaurants: search, keyword })
   })
 })
 
 //start and listen Express server
 app.listen(port, () => {
-  console.log(`Express is listening on localhost://${port}`)
+  console.log(`Express is listening on http://localhost:${port}`)
 })
