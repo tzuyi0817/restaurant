@@ -106,10 +106,9 @@ header {
   padding: 2px;
 }
 
-.btn {
-  height: 35px;
-  padding: 2px;
-  font-size: 18px;
+.fa-trash {
+  color: #1E90FF;
+  cursor: pointer;
 }
 
 .create {
