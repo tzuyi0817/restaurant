@@ -16,13 +16,15 @@
 
 4.終端機會開始跑 download , 待終端機出現 Done 後 , 表示下載完成
 
-5.在終端機輸入 npm i express express-handlebars mongoose body-parser
+5.在終端機輸入 npm i init -y
 
-6.接著輸入 node app.js
+6.再輸入 npm i mongoose
 
-7.伺服器會連接到 `http://localhost:3000`
+7.接著輸入 node app.js
 
-8.在瀏覽器的網址上輸入 `http://localhost:3000` , 即可開始管理清單
+8.伺服器會連接到 `http://localhost:3000`
+
+9.在瀏覽器的網址上輸入 `http://localhost:3000` , 即可開始管理清單
 
 # Features
 
@@ -36,4 +38,6 @@
 
 + 關鍵字搜尋片面的餐廳名稱
 
-+ 餐廳資料更改可以點及編輯修改
++ 餐廳資料更改可以點擊編輯修改
+
++ 右上的排序方式按鈕有各種排序功能可選擇
