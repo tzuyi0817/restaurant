@@ -119,3 +119,9 @@ header {
   color: white;
   text-decoration: none;
 }
+
+.button{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

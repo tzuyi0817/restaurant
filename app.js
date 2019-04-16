@@ -41,6 +41,9 @@ app.use('/restaurants', require('./routes/restaurants'))
 //search route
 app.use('/search', require('./routes/search'))
 
+//sort route
+app.use('/sort', require('./routes/sort'))
+
 //start and listen Express server
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
