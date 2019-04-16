@@ -6,9 +6,11 @@ const exphbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
-//setting body-parser
+//setting body-parser and method-override
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride('_method'))
 
 //setting mongoose
 mongoose.connect('mongodb://localhost/restaurant', { useNewUrlParser: true })
@@ -70,10 +72,10 @@ app.get('/restaurants/:id/edit', (req, res) => {
 })
 
 //修改資料
-app.post('/restaurants/:id', (req, res) => {
+app.put('/restaurants/:id', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
-    object.assign(restaurant, req.body)
+    Object.assign(restaurant, req.body)
 
     restaurant.save(err => {
       if (err) return console.error(err)
@@ -83,7 +85,7 @@ app.post('/restaurants/:id', (req, res) => {
 })
 
 //刪除資料
-app.post('/restaurants/:id/delete', (req, res) => {
+app.delete('/restaurants/:id/delete', (req, res) => {
   Restaurant.findById(req.params.id, (err, restaurant) => {
     if (err) return console.error(err)
 
