@@ -13,7 +13,7 @@ router.post('/login', (req, res) => {
 
 //註冊頁面
 router.get('/register', (req, res) => {
-
+  res.render('register')
 })
 
 //註冊撿查
