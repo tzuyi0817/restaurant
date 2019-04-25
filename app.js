@@ -7,6 +7,8 @@ const Restaurant = require('./models/restaurant')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
+const session = require('express-session')
+const passport = require('passport')
 
 //setting body-parser and method-override
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -31,6 +33,20 @@ app.set('view engine', 'handlebars')
 
 //setting static
 app.use(express.static('public'))
+
+//setting session
+app.use(session({
+  secret: 'key'
+}))
+
+//setting passport
+app.use(passport.initialize())
+app.use(passport.session())
+require('./config/passport')(passport)
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
 
 //home route
 app.use('/', require('./routes/home'))
