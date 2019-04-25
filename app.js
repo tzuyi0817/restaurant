@@ -44,6 +44,9 @@ app.use('/search', require('./routes/search'))
 //sort route
 app.use('/sort', require('./routes/sort'))
 
+//登入、註冊、登出 router
+app.use('/users', require('./routes/user'))
+
 //start and listen Express server
 app.listen(port, () => {
   console.log(`Express is listening on http://localhost:${port}`)
