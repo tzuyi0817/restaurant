@@ -10,7 +10,7 @@ router.get('/new', authenticated, (req, res) => {
 
 //新增一筆資料
 router.post('/', authenticated, (req, res) => {
-  const restaurant = Restaurant(req.body)
+  const restaurant = Restaurant({ ...req.body, userId: req.user._id })
 
   restaurant.save(err => {
     if (err) return console.error(err)
@@ -20,7 +20,7 @@ router.post('/', authenticated, (req, res) => {
 
 //顯示詳細內容
 router.get('/:id', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('show', { restaurant })
   })
@@ -28,7 +28,7 @@ router.get('/:id', authenticated, (req, res) => {
 
 //修改資料頁面
 router.get('/:id/edit', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     return res.render('edit', { restaurant })
   })
@@ -36,7 +36,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 
 //修改資料
 router.put('/:id', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
     Object.assign(restaurant, req.body)
 
@@ -49,7 +49,7 @@ router.put('/:id', authenticated, (req, res) => {
 
 //刪除資料
 router.delete('/:id/delete', authenticated, (req, res) => {
-  Restaurant.findById(req.params.id, (err, restaurant) => {
+  Restaurant.findOne({ _id: req.params.id, userId: req.user._id }, (err, restaurant) => {
     if (err) return console.error(err)
 
     restaurant.remove(err => {
