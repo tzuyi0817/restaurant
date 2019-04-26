@@ -10,6 +10,11 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
 
+//判別開發環境
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 //setting body-parser and method-override
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
@@ -65,6 +70,9 @@ app.use('/sort', require('./routes/sort'))
 
 //登入、註冊、登出 router
 app.use('/users', require('./routes/user'))
+
+//auth routes
+app.use('/auth', require('./routes/auths'))
 
 //start and listen Express server
 app.listen(port, () => {
