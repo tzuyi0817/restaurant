@@ -3,6 +3,7 @@
     "body",
     "exphbs",
     "javascripts",
-    "psrser"
+    "psrser",
+    "resave"
   ]
 }
