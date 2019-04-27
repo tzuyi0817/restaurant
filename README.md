@@ -18,13 +18,15 @@
 
 5.在終端機輸入 npm i init -y
 
-6.再輸入 npm i mongoose
+6.輸入 cd models/seeds 找到種子資料夾
 
-7.接著輸入 node app.js
+7.輸入 node restaurantSeeder.js 新增種子資料到資料庫
 
-8.伺服器會連接到 `http://localhost:3000`
+8.接著輸入 node app.js
 
-9.在瀏覽器的網址上輸入 `http://localhost:3000` , 即可開始管理清單
+9.伺服器會連接到 `http://localhost:3000`
+
+10.在瀏覽器的網址上輸入 `http://localhost:3000` , 即可開始管理清單
 
 # Features
 
@@ -40,4 +42,8 @@
 
 + 餐廳資料更改可以點擊編輯修改
 
-+ 右上的排序方式按鈕有各種排序功能可選擇
++ 排序方式按鈕有各種排序功能可選擇
+
++ 右上有登出功能
+
++ 加入facebook登入功能
