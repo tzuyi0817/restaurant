@@ -51,12 +51,12 @@
 
                 <div class="row justify-content-end mt-2">
                   <div class="edit">
-                    <a href="/restaurants/{{id}}/edit">編輯</a>
+                    <a href="/restaurants/{{_id}}/edit">編輯</a>
                   </div>
                   <div class="detail">
-                    <a href="/restaurants/{{id}}">詳細資料</a>
+                    <a href="/restaurants/{{_id}}">詳細資料</a>
                   </div>
-                  <form action="/restaurants/{{id}}/delete?_method=DELETE" method="POST">
+                  <form action="/restaurants/{{_id}}/delete?_method=DELETE" method="POST">
                     <div class="delete">
                       <button>
                         <i class="fa fa-trash" aria-hidden="true"></i>

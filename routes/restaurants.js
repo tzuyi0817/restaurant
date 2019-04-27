@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express()
+const router = express.Router()
 const Restaurant = require('../models/restaurant')
 const { authenticated } = require('../config/auth')
 
@@ -10,7 +10,7 @@ router.get('/new', authenticated, (req, res) => {
 
 //新增一筆資料
 router.post('/', authenticated, (req, res) => {
-  const restaurant = Restaurant({ ...req.body, userId: req.user._id })
+  const restaurant = Restaurant({ name: req.body.name, userId: req.user._id })
 
   restaurant.save(err => {
     if (err) return console.error(err)
