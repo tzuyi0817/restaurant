@@ -4,7 +4,7 @@ const Restaurant = require('../models/restaurant')
 
 //評分排序
 router.get('/rating', (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort({ rating: 'desc' })
     .exec((err, restaurants) => {
       if (err) return console.error(err)
@@ -14,7 +14,7 @@ router.get('/rating', (req, res) => {
 
 //類別排序
 router.get('/category', (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort({ category: 'asc' })
     .exec((err, restaurants) => {
       if (err) return console.error(err)
@@ -24,7 +24,7 @@ router.get('/category', (req, res) => {
 
 //A > Z 排序
 router.get('/asc', (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort({ name: 'asc' })
     .exec((err, restaurants) => {
       if (err) return console.error(err)
@@ -34,7 +34,7 @@ router.get('/asc', (req, res) => {
 
 //Z > A排序
 router.get('/desc', (req, res) => {
-  Restaurant.find({})
+  Restaurant.find({ userId: req.user._id })
     .sort({ name: 'desc' })
     .exec((err, restaurants) => {
       if (err) return console.error(err)
